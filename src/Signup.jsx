@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import DropImages from "./DropImages";
-
+import { Link } from "react-router-dom"
 
 const Signup = () => {
     const [email, setEmail] = useState("");
@@ -80,7 +80,7 @@ const Signup = () => {
                         </div>
                         <div className="btn-div">
                             <button onClick={handleSignIn} className="details-btn">Create Account</button>
-                            <p>Already have an account? <a href="#login">Login</a></p>
+                            <p>Already have an account? <Link to="/Login">Login</Link></p>
                         </div>
                     </div>
                 </div>

@@ -78,7 +78,7 @@ const DropImages = () => {
         localStorage.setItem("imageDataUrls", JSON.stringify([...imageDataUrls, ...dataUrls]));
         localStorage.setItem("tagInputs", JSON.stringify([...tagInputs, ...initialTagInputs]));
       });
-    },[imageDataUrls, tagInputs]);
+    }, [imageDataUrls, tagInputs]);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
@@ -137,6 +137,19 @@ const DropImages = () => {
 
   return (
     <div>
+    <div>
+    <div className="header-div">
+        <div className="logo">
+            <h1>Image Gallery</h1>
+            <p>Drag and drop Images to get started</p>
+        </div>
+        <button>Logout</button>
+    </div>
+    <div>
+        <DropImages />
+    </div>
+</div>
+    <div className="drop-container">
       <input
         style={{ display: "none" }}
         ref={inputRef}
@@ -159,18 +172,18 @@ const DropImages = () => {
             ))}
           </div>
         ) : filteredImagesList.length === 0 ? (
-          <p>
+          <p className="drag">
             Drag & drop images here, or
-            <button onClick={handleClickFileInput}>
-              click to select files
+            <button onClick={handleClickFileInput} className="drag-btn">
+              Select files
             </button>
           </p>
         ) : isDragActive ? (
-          <p>Drop the files here ...</p>
+          <p className="drag">Drop the files here ...</p>
         ) : (
-          <div>
+          <div className="image-container">
             {filteredImagesList.map((image, index) => (
-              <div key={index}>
+              <div key={index} className="image-input-div">
                 <img
                   src={image.dataUrl}
                   alt={`Dropped pic ${index}`}
@@ -178,7 +191,7 @@ const DropImages = () => {
                   onDragStart={() => handleImageDragStart(index)}
                   onDragOver={handleImageDragOver(index)}
                   onDragEnd={handleImageDragEnd}
-                  style={{ width: "100px", height: "100px", cursor: "grab" }}
+                  className="image"
                 />
                 {searchState === "" ? (
                   <p>
@@ -190,12 +203,13 @@ const DropImages = () => {
                       className="tag-input"
                     />
                   </p>
-                ) : ( <p>{image.tagInput}</p>)}
+                ) : (<p>{image.tagInput}</p>)}
               </div>
             ))}
           </div>
         )}
       </div>
+    </div>
     </div>
   );
 };

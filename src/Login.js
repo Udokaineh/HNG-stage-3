@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import DropImages from "./DropImages";
+import { Link } from "react-router-dom"
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -36,18 +37,18 @@ const Login = () => {
     return (
         <div className="container">
             {isLoggedIn ? (
-                 <div>
-                 <div>
-                     <div>
-                         <h1>Image Gallery</h1>
-                         <p>Drag and drop Images to get started</p>
-                     </div>
-                     <button onClick={handleLogout}>Logout</button>
-                 </div>
-                 <div>
-                 <DropImages />
-                 </div>
-             </div>
+                <div>
+                    <div className="header-div">
+                        <div className="logo">
+                            <h1>Image Gallery</h1>
+                            <p>Drag and drop Images to get started</p>
+                        </div>
+                        <button onClick={handleLogout}>Logout</button>
+                    </div>
+                    <div>
+                        <DropImages />
+                    </div>
+                </div>
             ) : (
                 <div className="wrapper">
                     <div className="left-decor"></div>
@@ -67,7 +68,7 @@ const Login = () => {
                                 />
                             </div>
 
-                            <div class ="password-div">
+                            <div class="password-div">
                                 <p>Password</p>
                                 <input
                                     type="password"
@@ -78,8 +79,8 @@ const Login = () => {
                             </div>
                         </div>
                         <div className="btn-div">
-                        <button onClick={handleLogin} className="details-btn">Login</button>
-                        <p>Don't have an account? <a href="#signup">Signup</a></p>
+                            <button onClick={handleLogin} className="details-btn">Login</button>
+                            <p>Don't have an account? <Link to="/Signup">Signup</Link></p>
                         </div>
                     </div>
                 </div>

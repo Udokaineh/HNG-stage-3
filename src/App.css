@@ -5,7 +5,15 @@
   padding: 0;
   box-sizing: border-box;
 }
- /* login */
+button {
+  cursor: pointer;
+}
+
+.header-div {
+  display: flex;
+  flex-direction: row;
+}
+/* login and signup */
 
 /* body {
   background-color: #1D1A39;
@@ -14,6 +22,7 @@
   width: 100%;
   height: 600px;
  }
+
  .wrapper {
   width: 60%;
   margin: 70px auto;
@@ -109,7 +118,7 @@
 .loading-skeleton {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 30px;
 }
 
 .skeleton-item {
@@ -132,11 +141,63 @@
   }
 }
 
-/* .dropzone {
-  height: 300px;
-  width: 300px;
+.dropzone {
+  width: 80%;
+  height: fit-content;
+  padding: 50px 0;
+  margin: 0 120px;
   border: 2px solid green;
 }
-.tag {
-  display: block 
-} */
+.drop-container {
+  border: 2px solid brown;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+
+.image-container {
+  border: 2px solid blue;
+  display: grid;
+  grid-template-columns: auto auto auto;;
+  gap: 80px;
+  justify-content: center;
+}
+.image-input-div {
+  border: 2px solid red;
+}
+.image-input-div img {
+  width: 250px;
+  height: 400px;
+  cursor: grab;
+}
+
+.image {
+  width: 100%;
+  height: 180px;
+  cursor: grab;
+}
+
+.tag-input {
+  font-family: 'Playfair Display', serif;
+  color: #1D1A39;
+  width: 100%;
+  border: none;
+  outline: none;
+  margin-top: 8px;
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.drag {
+  text-align: center;
+}
+.input {
+  border: 2px solid purple;
+  margin: 40px 120px 0;
+  width: 30%;
+  padding: 10px 8px;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  border: 2px solid rgb(182, 182, 182); ;
+}
