@@ -136,19 +136,6 @@ const DropImages = () => {
   const filteredImagesList = filteredImages();
 
   return (
-    <div>
-    <div>
-    <div className="header-div">
-        <div className="logo">
-            <h1>Image Gallery</h1>
-            <p>Drag and drop Images to get started</p>
-        </div>
-        <button>Logout</button>
-    </div>
-    <div>
-        <DropImages />
-    </div>
-</div>
     <div className="drop-container">
       <input
         style={{ display: "none" }}
@@ -159,7 +146,7 @@ const DropImages = () => {
       <input
         onChange={handleSearch}
         type="text"
-        placeholder="search for image"
+        placeholder="Search for image"
         value={searchState}
         className="input"
       />
@@ -209,7 +196,6 @@ const DropImages = () => {
           </div>
         )}
       </div>
-    </div>
     </div>
   );
 };

@@ -37,16 +37,16 @@ const Signup = () => {
     return (
         <div className="container">
             {isSignedIn ? (
-                <div>
-                    <div>
-                        <div>
+                <div className="main-header-container">
+                    <div className="main-header">
+                        <div className="logo">
                             <h1>Image Gallery</h1>
-                            <p>Drag and drop Images to get started</p>
+                            <p>Drag and drop Images to get started.</p>
                         </div>
                         <button onClick={handleLogout}>Logout</button>
                     </div>
                     <div>
-                    <DropImages />
+                        <DropImages />
                     </div>
                 </div>
             ) : (
@@ -54,7 +54,7 @@ const Signup = () => {
                     <div className="left-decor"></div>
                     <div className="right">
                         <div className="header-text">
-                            <h2>Hello, Welcome!</h2>
+                            <h2>Hello, Get Started!</h2>
                         </div>
                         <div className="email-details">
                             {error && <p>{error}</p>}

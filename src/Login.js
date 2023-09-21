@@ -12,11 +12,7 @@ const Login = () => {
     const auth = getAuth();
     const handleLogin = async () => {
         try {
-            const userDetails = await signInWithEmailAndPassword(
-                auth,
-                email,
-                password
-            );
+            const userDetails = await signInWithEmailAndPassword(auth, email, password);
             const user = userDetails.user;
             console.log("User logged in:", user);
             setIsLoggedIn(true);
@@ -37,13 +33,15 @@ const Login = () => {
     return (
         <div className="container">
             {isLoggedIn ? (
-                <div>
-                    <div className="header-div">
+                <div className="main-header-container">
+                    <div className="main-header">
                         <div className="logo">
                             <h1>Image Gallery</h1>
-                            <p>Drag and drop Images to get started</p>
+                            <p>Drag and drop Images to get started.</p>
                         </div>
-                        <button onClick={handleLogout}>Logout</button>
+                        <div className="main-btn-div">
+                        <button onClick={handleLogout} className="main-header-btn">Logout</button>
+                        </div>
                     </div>
                     <div>
                         <DropImages />
