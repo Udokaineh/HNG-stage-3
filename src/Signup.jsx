@@ -57,7 +57,7 @@ const Signup = () => {
                             <h2>Hello, Get Started!</h2>
                         </div>
                         <div className="email-details">
-                            {error && <p>{error}</p>}
+                            {error && <p className="error">{error}</p>}
                             <div className="email-div">
                                 <p>Email</p>
                                 <input

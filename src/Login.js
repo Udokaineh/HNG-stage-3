@@ -55,7 +55,7 @@ const Login = () => {
                             <h2>Welcome back!</h2>
                         </div>
                         <div className="email-details">
-                            {error && <p>{error}</p>}
+                            {error && <p className="error">{error}</p>}
                             <div className="email-div">
                                 <p>Email</p>
                                 <input
