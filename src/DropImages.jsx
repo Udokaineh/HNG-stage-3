@@ -2,11 +2,14 @@ import React, { useCallback, useState, useEffect, useRef } from "react";
 import { useDropzone } from "react-dropzone";
 
 const DropImages = () => {
-  const [imageUrls, setImageUrls] = useState([]);
-  const [tagInputs, setTagInputs] = useState([]);
+  const [imageDataUrls, setImageDataUrls] = useState([]);
+  const [tagInputs, setTagInputs] = useState(() => {
+    const storedTagInputs = JSON.parse(localStorage.getItem("tagInputs")) || [];
+    return storedTagInputs;
+  });
   const [searchState, setSearchState] = useState("");
   const [loading, setLoading] = useState(true);
-  const [draggedImageIndex, setDraggedImageIndex] = useState(null);
+  const [draggedImageIndex, setDraggedImageIndex] = useState(null)
 
   useEffect(() => {
     setTimeout(() => {
@@ -15,11 +18,11 @@ const DropImages = () => {
   }, []);
 
   useEffect(() => {
-    const storedImageUrls = JSON.parse(localStorage.getItem("imageUrls")) || [];
-    const storedTagInput = JSON.parse(localStorage.getItem("tagInputs")) || [];
+    const storedImageDataUrls = JSON.parse(localStorage.getItem("imageDataUrls")) || [];
+    const storedTagInputs = JSON.parse(localStorage.getItem("tagInputs")) || [];
 
-    setImageUrls(storedImageUrls);
-    setTagInputs(storedTagInput);
+    setImageDataUrls(storedImageDataUrls);
+    setTagInputs(storedTagInputs);
   }, []);
 
   const inputRef = useRef(null);
@@ -32,70 +35,87 @@ const DropImages = () => {
     const selectedFiles = Array.from(e.target.files);
 
     if (selectedFiles.length > 0) {
-      const newImageUrls = selectedFiles.map(() => URL.createObjectURL(selectedFiles[0]));
+      const fileReaders = selectedFiles.map((file) => {
+        const reader = new FileReader();
+        return new Promise((resolve) => {
+          reader.onload = (event) => {
+            resolve(event.target.result);
+          };
+          reader.readAsDataURL(file);
+        });
+      });
 
-      setImageUrls([...imageUrls, ...newImageUrls]);
+      Promise.all(fileReaders).then((dataUrls) => {
+        setImageDataUrls([...imageDataUrls, ...dataUrls]);
 
-      const initialTagInputs = Array(newImageUrls.length).fill("");
-      setTagInputs([...tagInputs, ...initialTagInputs]);
+        const initialTagInputs = Array(dataUrls.length).fill("");
+        setTagInputs([...tagInputs, ...initialTagInputs]);
 
-      localStorage.setItem("imageUrls", JSON.stringify([...imageUrls, ...newImageUrls]));
-      localStorage.setItem("tagInputs", JSON.stringify([...tagInputs, ...initialTagInputs]));
+        localStorage.setItem("imageDataUrls", JSON.stringify([...imageDataUrls, ...dataUrls]));
+        localStorage.setItem("tagInputs", JSON.stringify([...tagInputs, ...initialTagInputs]));
+      });
     }
   };
 
   const onDrop = useCallback(
     (acceptedFiles) => {
-      const newImageUrls = acceptedFiles.map((file) => URL.createObjectURL(file));
+      const fileReaders = acceptedFiles.map((file) => {
+        const reader = new FileReader();
+        return new Promise((resolve) => {
+          reader.onload = (event) => {
+            resolve(event.target.result);
+          };
+          reader.readAsDataURL(file);
+        });
+      });
 
-      setImageUrls([...imageUrls, ...newImageUrls]);
+      Promise.all(fileReaders).then((dataUrls) => {
+        setImageDataUrls([...imageDataUrls, ...dataUrls]);
 
-      const initialTagInputs = Array(newImageUrls.length).fill("");
-      setTagInputs([...tagInputs, ...initialTagInputs]);
+        const initialTagInputs = Array(dataUrls.length).fill("");
+        setTagInputs([...tagInputs, ...initialTagInputs]);
 
-      localStorage.setItem("imageUrls", JSON.stringify([...imageUrls, ...newImageUrls]));
-      localStorage.setItem("tagInputs", JSON.stringify([...tagInputs, ...initialTagInputs]));
-    },
-    [imageUrls, tagInputs]
-  );
+        localStorage.setItem("imageDataUrls", JSON.stringify([...imageDataUrls, ...dataUrls]));
+        localStorage.setItem("tagInputs", JSON.stringify([...tagInputs, ...initialTagInputs]));
+      });
+    },[imageDataUrls, tagInputs]);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     noClick: true,
   });
 
-
   // functions that let you rearrange images dragged and dropped
   const handleImageDragStart = (index) => {
     setDraggedImageIndex(index);
   };
-  
+
   const handleImageDragOver = (index) => (e) => {
     e.preventDefault();
     if (draggedImageIndex !== null && draggedImageIndex !== index) {
-      const newImageUrls = [...imageUrls];
-      const [draggedImage] = newImageUrls.splice(draggedImageIndex, 1);
-      newImageUrls.splice(index, 0, draggedImage);
-  
+      const newImageDataUrls = [...imageDataUrls];
+      const [draggedImageDataUrl] = newImageDataUrls.splice(draggedImageIndex, 1);
+      newImageDataUrls.splice(index, 0, draggedImageDataUrl);
+
       const newTagInputs = [...tagInputs];
       const [draggedTagInput] = newTagInputs.splice(draggedImageIndex, 1);
       newTagInputs.splice(index, 0, draggedTagInput);
-  
-      setImageUrls(newImageUrls);
+
+      setImageDataUrls(newImageDataUrls);
       setTagInputs(newTagInputs);
       setDraggedImageIndex(index);
     }
   };
-  
+
   const handleImageDragEnd = () => {
     setDraggedImageIndex(null);
-  };  
+  };
 
-  
   const handleTagChange = (index, event) => {
     const createTagCopies = [...tagInputs];
     createTagCopies[index] = event.target.value;
     setTagInputs(createTagCopies);
+    localStorage.setItem("tagInputs", JSON.stringify(createTagCopies))
   };
 
   const handleSearch = (e) => {
@@ -103,8 +123,8 @@ const DropImages = () => {
   };
 
   const filteredImages = () => {
-    return imageUrls.map((imageUrl, index) => ({
-      imageUrl,
+    return imageDataUrls.map((dataUrl, index) => ({
+      dataUrl,
       tagInput: tagInputs[index] || "",
     })).filter((image) => {
       return (
@@ -152,7 +172,7 @@ const DropImages = () => {
             {filteredImagesList.map((image, index) => (
               <div key={index}>
                 <img
-                  src={image.imageUrl}
+                  src={image.dataUrl}
                   alt={`Dropped pic ${index}`}
                   draggable
                   onDragStart={() => handleImageDragStart(index)}
@@ -160,7 +180,6 @@ const DropImages = () => {
                   onDragEnd={handleImageDragEnd}
                   style={{ width: "100px", height: "100px", cursor: "grab" }}
                 />
-
                 {searchState === "" ? (
                   <p>
                     <input
@@ -171,8 +190,7 @@ const DropImages = () => {
                       className="tag-input"
                     />
                   </p>
-                ) : null}
-                <p value={tagInputs[index] || ""}>{image.tag}</p>
+                ) : ( <p>{image.tagInput}</p>)}
               </div>
             ))}
           </div>

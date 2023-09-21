@@ -1,7 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+ /* login */
+
+/* body {
+  background-color: #1D1A39;
+} */
+.container {
+  width: 100%;
+  height: 600px;
+ }
+ .wrapper {
+  width: 60%;
+  margin: 70px auto;
+  background-color: #E8BCB9;
+  display: grid;
+  grid-template-columns: 1fr 1fr
+ }
+ .left-decor {
+  height: fit-content;
+  padding: 200px;
+  background-image: linear-gradient(#662549 ,#F39F5A, #AE445A);
+ }
+ .right {
+  height: fit-content;
+  padding: 0 30px;
+}
+.header-text {
+   padding: 40px 0;
+ }
+ .header-text h2 {
+  font-size: 30px;
+  font-family: 'Playfair Display', serif;
+  color: #1D1A39;
+  font-weight: 800;
+  width: 100%;
+ }
+ .header-text p {
+  margin-top: 8px;
+  color: #3a3a3a;
+ }
+
+ .email-div {
+  margin-bottom: 12px;
+ }
+ .email-div p {
+  margin-bottom: 4px;
+ }
+ .email-div input {
+  width: 100%;
+  padding: 10px 8px;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  border: 1px solid rgb(182, 182, 182);
+ }
+ .email-div input::placeholder {
+  font-size: 12px;
+ }
+
+ .password-div input::placeholder {
+  font-size: 12px;
+ }
+ .password-div p {
+  margin-bottom: 4px;
+ }
+
+ .password-div input {
+  width: 100%;
+  padding: 10px 8px;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  border: 1px solid rgb(182, 182, 182);
+ }
+
+ .btn-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+ }
+ .details-btn {
+  margin-top: 28px;
+  width: 100%;
+  padding: 12px 24px;
+  border: none;
+  outline: none;
+  background-color:#662549;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+ }
+.btn-div p {
+  font-size: 14px;
+  margin-top: 10px;
+}
+.btn-div p > a {
+  color: #662549;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .loading-skeleton {
@@ -30,8 +132,11 @@
   }
 }
 
-.dropzone {
+/* .dropzone {
   height: 300px;
   width: 300px;
   border: 2px solid green;
 }
+.tag {
+  display: block 
+} */
