@@ -82,7 +82,7 @@ const DummyImages = () => {
                         onDragStart={() => handleImageDragStart(index)}
                         onDragOver={handleImageDragOver(index)}
                         onDragEnd={handleImageDragEnd}
-                        className="image"
+                        className="image dumm-image"
                     />
                     <p className="tag-input">{item.Name}</p>
                 </div>

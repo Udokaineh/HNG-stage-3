@@ -294,6 +294,10 @@ button {
   column-gap: 30px;
   row-gap: 60px;
 }
+.dumm-image {
+  width: 100%;
+}
+
 .dummy-input {
   font-size: 16px;
   margin-bottom: 12px;
@@ -377,6 +381,10 @@ button {
       grid-template-columns: auto;
       column-gap: 30px;
       row-gap: 60px;
+    }
+    .dumm-image {
+      width: 100%;
+  
     }
   }
 
