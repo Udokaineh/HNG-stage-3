@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect, useRef } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import DummyImages from "./DummyImages";
 
@@ -26,37 +26,37 @@ const DropImages = () => {
     setTagInputs(storedTagInputs);
   }, []);
 
-  const inputRef = useRef(null);
+  // const inputRef = useRef(null);
 
-  const handleClickFileInput = () => {
-    inputRef.current.click();
-  };
+  // const handleClickFileInput = () => {
+  //   inputRef.current.click();
+  // };
 
-  const handleFileInputChange = (e) => {
-    const selectedFiles = Array.from(e.target.files);
+  // const handleFileInputChange = (e) => {
+  //   const selectedFiles = Array.from(e.target.files);
 
-    if (selectedFiles.length > 0) {
-      const fileReaders = selectedFiles.map((file) => {
-        const reader = new FileReader();
-        return new Promise((resolve) => {
-          reader.onload = (event) => {
-            resolve(event.target.result);
-          };
-          reader.readAsDataURL(file);
-        });
-      });
+  //   if (selectedFiles.length > 0) {
+  //     const fileReaders = selectedFiles.map((file) => {
+  //       const reader = new FileReader();
+  //       return new Promise((resolve) => {
+  //         reader.onload = (event) => {
+  //           resolve(event.target.result);
+  //         };
+  //         reader.readAsDataURL(file);
+  //       });
+  //     });
 
-      Promise.all(fileReaders).then((dataUrls) => {
-        setImageDataUrls([...imageDataUrls, ...dataUrls]);
+  //     Promise.all(fileReaders).then((dataUrls) => {
+  //       setImageDataUrls([...imageDataUrls, ...dataUrls]);
 
-        const initialTagInputs = Array(dataUrls.length).fill("");
-        setTagInputs([...tagInputs, ...initialTagInputs]);
+  //       const initialTagInputs = Array(dataUrls.length).fill("");
+  //       setTagInputs([...tagInputs, ...initialTagInputs]);
 
-        localStorage.setItem("imageDataUrls", JSON.stringify([...imageDataUrls, ...dataUrls]));
-        localStorage.setItem("tagInputs", JSON.stringify([...tagInputs, ...initialTagInputs]));
-      });
-    }
-  };
+  //       localStorage.setItem("imageDataUrls", JSON.stringify([...imageDataUrls, ...dataUrls]));
+  //       localStorage.setItem("tagInputs", JSON.stringify([...tagInputs, ...initialTagInputs]));
+  //     });
+  //   }
+  // };
 
   const onDrop = useCallback(
     (acceptedFiles) => {
@@ -138,12 +138,12 @@ const DropImages = () => {
 
   return (
     <div className="drop-container">
-      <input
+      {/* <input
         style={{ display: "none" }}
         ref={inputRef}
         type="file"
         onChange={handleFileInputChange}
-      />
+      /> */}
       <input
         onChange={handleSearch}
         type="text"
