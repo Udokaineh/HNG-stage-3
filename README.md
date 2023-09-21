@@ -1,3 +1,13 @@
+# Getting started with my image gallery
+# New users are to create an account with the signup form 
+# Existing users can log in, the dummy email and password given to us can be use to login
+# Images can be dragged and droped and select button to open your laptop files
+# Existing Images will not be found on the app because images are not rendered through API, rather it is dragged and dropped and stored to the local storage which is unique to every user.
+# I have added images in the Assets folder for testing.
+
+# Getting Started with Create React App
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
