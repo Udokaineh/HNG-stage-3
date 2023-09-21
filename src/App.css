@@ -269,6 +269,16 @@ button {
 .drag {
   text-align: center;
 }
+.drag-btn {
+  margin-left: 8px;
+  padding: 12px 24px;
+  border: none;
+  outline: none;
+  background-color: #662549;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+}
 
 .input {
   margin: 40px 126px 20px;
@@ -377,33 +387,38 @@ button {
       font-size: 20px;
       font-weight: 600;
     }
+
     .right {
       height: fit-content;
       padding: 0 8px;
     }
+
     .btn-div p {
       font-size: 10px;
       text-align: center;
       margin-top: 10px;
     }
+
     .logo {
       width: 100%;
     }
+
     .logo h1 {
       font-size: 20px;
       font-weight: 600;
     }
-    
+
     .logo p {
       margin-top: 8px;
       color: #efeeee;
     }
-  
+
     .image {
       width: 60%;
       height: 120px;
       cursor: grab;
     }
+
     .input {
       width: 75%;
       margin: 40px 40px 20px
