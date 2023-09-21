@@ -160,12 +160,6 @@ const DropImages = () => {
             ))}
           </div>
         ) : filteredImagesList.length === 0 ? (
-          // <p className="drag">
-          //   Drag & drop images here, or
-          //   <button onClick={handleClickFileInput} className="drag-btn">
-          //     Select files
-          //   </button>
-          // </p>
           <DummyImages />
         ) : isDragActive ? (
           <p className="drag">Drop the files here ...</p>
