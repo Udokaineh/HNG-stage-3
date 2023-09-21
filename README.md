@@ -1,9 +1,11 @@
 # Getting started with my image gallery
 # New users are to create an account with the signup form 
-# Existing users can log in, the dummy email and password given to us can be use to login
-# Images can be dragged and droped and select button to open your laptop files
-# Existing Images will not be found on the app because images are not rendered through API, rather it is dragged and dropped and stored to the local storage which is unique to every user.
-# I have added images in the Assets folder for testing.
+ Existing users can log in, the dummy email and password given to us can be use to login
+ Images can be dragged and droped and select button to open your laptop files
+ Existing Images will not be found on the app because images are not rendered through API, rather it is dragged and dropped and stored to the local storage which is unique to every user.
+ I have added images in the Assets folder for testing.
+ #updated and added dummy images, but when images are dropped, the dummy images is replaced with the dropped image
+ you should atleast add up to 3 images and above to see how the website finally renders.
 
 # Getting Started with Create React App
 
