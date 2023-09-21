@@ -1,5 +1,6 @@
 import React, { useCallback, useState, useEffect, useRef } from "react";
 import { useDropzone } from "react-dropzone";
+import DummyImages from "./DummyImages";
 
 const DropImages = () => {
   const [imageDataUrls, setImageDataUrls] = useState([]);
@@ -146,7 +147,7 @@ const DropImages = () => {
       <input
         onChange={handleSearch}
         type="text"
-        placeholder="Search for image"
+        placeholder="Search drag and drop images"
         value={searchState}
         className="input"
       />
@@ -159,16 +160,17 @@ const DropImages = () => {
             ))}
           </div>
         ) : filteredImagesList.length === 0 ? (
-          <p className="drag">
-            Drag & drop images here, or
-            <button onClick={handleClickFileInput} className="drag-btn">
-              Select files
-            </button>
-          </p>
+          // <p className="drag">
+          //   Drag & drop images here, or
+          //   <button onClick={handleClickFileInput} className="drag-btn">
+          //     Select files
+          //   </button>
+          // </p>
+          <DummyImages />
         ) : isDragActive ? (
           <p className="drag">Drop the files here ...</p>
         ) : (
-          <div className="image-container">
+          <div className="image-containe">
             {filteredImagesList.map((image, index) => (
               <div key={index} className="image-input-div">
                 <img
