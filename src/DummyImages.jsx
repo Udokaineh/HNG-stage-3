@@ -73,8 +73,8 @@ const DummyImages = () => {
 
     const renderImages = updatedImages.map((item, index) => {
         return (
-            <div className="image-containe">
-                <div key={item.id} className="image-input-div">
+            <div className="dummy-image-container">
+                <div key={item.id} className="dummy-image-input-div">
                     <img
                         src={item.picture}
                         alt={item.Name}
@@ -82,7 +82,7 @@ const DummyImages = () => {
                         onDragStart={() => handleImageDragStart(index)}
                         onDragOver={handleImageDragOver(index)}
                         onDragEnd={handleImageDragEnd}
-                        className="image dumm-image"
+                        className="dumm-image"
                     />
                     <p className="tag-input">{item.Name}</p>
                 </div>
@@ -104,7 +104,7 @@ const DummyImages = () => {
             placeholder="Search dummy images..."
             value={filteredList}
             onChange={(event) => setFilteredList(event.target.value)} 
-            className="tag-input dummy-input"
+            className="dummy-input"
           />
           <div className="dummy-image">
             {/* Render the filtered images */}

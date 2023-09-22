@@ -288,6 +288,24 @@ button {
   border: none;
   border: 2px solid rgb(182, 182, 182);
 }
+
+.trash-tag-div {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.trash {
+  margin-bottom: 4px;
+  color:#3a3a3a;
+  cursor: pointer;
+}
+.trash:hover {
+  margin-bottom: 4px;
+  color:#662549;
+  cursor: pointer;
+}
+
 .dummy-image {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -296,11 +314,30 @@ button {
 }
 .dumm-image {
   width: 100%;
+  height: 180px;
+  cursor: grab;
+}
+
+.dummy-image-input-div {
+  border: 1px solid rgb(182, 182, 182);
+}
+
+.dummy-image-input-div img {
+  width: 250px;
+  height: 400px;
+  cursor: grab;
 }
 
 .dummy-input {
+  font-family: 'Playfair Display', serif;
+  color: #1D1A39;
+  width: 90%;
+  border: none;
+  outline: none;
+  font-weight: 800;
   font-size: 16px;
   margin-bottom: 12px;
+  background-color: none;
 }
 .dummy-input::placeholder {
   font-size: 14px;
@@ -364,6 +401,17 @@ button {
       gap: 60px;
       justify-content: center;
     }
+    .dummy-image-container {
+      background-color: #fff;
+      display: grid;
+      grid-template-columns: auto;
+      gap: 60px;
+      justify-content: center;
+    }
+
+    .dummy-input {
+      margin-left: 46px;
+    }
 
     .main-header {
       padding: 40px;
@@ -381,6 +429,7 @@ button {
       grid-template-columns: auto;
       column-gap: 30px;
       row-gap: 60px;
+      border: none;
     }
     .dumm-image {
       width: 100%;
@@ -418,6 +467,9 @@ button {
       align-self: center;
       justify-content: center;
       gap: 30px;
+    }
+    .dummy-input {
+      margin-left: 8px;
     }
   }
 

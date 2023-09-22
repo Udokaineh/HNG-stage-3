@@ -1,6 +1,7 @@
 import React, { useCallback, useState, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import DummyImages from "./DummyImages";
+import { FaTrash } from "react-icons/fa";
 
 const DropImages = () => {
   const [imageDataUrls, setImageDataUrls] = useState([]);
@@ -136,6 +137,20 @@ const DropImages = () => {
 
   const filteredImagesList = filteredImages();
 
+  const handleDelete = (index) => {
+    const newImageDataUrls = [...imageDataUrls];
+    const newTagInputs = [...tagInputs];
+
+    newImageDataUrls.splice(index, 1);
+    newTagInputs.splice(index, 1);
+
+    setImageDataUrls(newImageDataUrls);
+    setTagInputs(newTagInputs);
+
+    localStorage.setItem("imageDataUrls", JSON.stringify(newImageDataUrls));
+    localStorage.setItem("tagInputs", JSON.stringify(newTagInputs));
+  };
+
   return (
     <div className="drop-container">
       {/* <input
@@ -164,7 +179,7 @@ const DropImages = () => {
         ) : isDragActive ? (
           <p className="drag">Drop the files here ...</p>
         ) : (
-          <div className="image-containe">
+          <div className="image-container">
             {filteredImagesList.map((image, index) => (
               <div key={index} className="image-input-div">
                 <img
@@ -177,7 +192,7 @@ const DropImages = () => {
                   className="image"
                 />
                 {searchState === "" ? (
-                  <p>
+                  <p className="trash-tag-div">
                     <input
                       type="text"
                       placeholder="Enter tag"
@@ -185,6 +200,7 @@ const DropImages = () => {
                       onChange={(event) => handleTagChange(index, event)}
                       className="tag-input"
                     />
+                    <FaTrash  onClick={handleDelete} className="trash"/>
                   </p>
                 ) : (<p>{image.tagInput}</p>)}
               </div>
