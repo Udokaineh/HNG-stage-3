@@ -288,6 +288,14 @@ button {
   border: none;
   border: 2px solid rgb(182, 182, 182);
 }
+.input:focus {
+  margin: 40px 126px 20px;
+  width: 30%;
+  padding: 10px 8px;
+  outline: none;
+  border: none;
+  border: 2px solid #F39F5A;
+}
 
 .trash-tag-div {
   display: flex;
@@ -348,6 +356,18 @@ button {
   border: none;
   border: 2px solid rgb(182, 182, 182);
 }
+.dummy-input:focus {
+  font-family: 'Playfair Display', serif;
+  color: #1D1A39;
+  width: 50%;
+  font-weight: 800;
+  font-size: 16px;
+  margin-bottom: 18px;
+  padding: 10px 8px;
+  outline: none;
+  border: none;
+  border: 2px solid #662549;
+}
 
 .dummy-input::placeholder {
   font-size: 14px;
@@ -378,6 +398,7 @@ button {
     width: 80%;
     margin: 40px 90px 20px;
   }
+
   .dummy-image {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
