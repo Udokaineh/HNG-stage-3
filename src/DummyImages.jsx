@@ -97,11 +97,11 @@ const DummyImages = () => {
       });
     
       return (
-        <div {...getRootProps()} className="dropzone">
+        <div {...getRootProps()} className="dummy-dropzone">
           <input {...getInputProps()} />
           <input
             type="text"
-            placeholder="Search dummy images..."
+            placeholder="Search images..."
             value={filteredList}
             onChange={(event) => setFilteredList(event.target.value)} 
             className="dummy-input"

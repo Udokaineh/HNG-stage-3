@@ -11,7 +11,8 @@ const DropImages = () => {
   });
   const [searchState, setSearchState] = useState("");
   const [loading, setLoading] = useState(true);
-  const [draggedImageIndex, setDraggedImageIndex] = useState(null)
+  const [draggedImageIndex, setDraggedImageIndex] = useState(null);
+  const [imagesDropped, setImagesDropped] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -20,7 +21,8 @@ const DropImages = () => {
   }, []);
 
   useEffect(() => {
-    const storedImageDataUrls = JSON.parse(localStorage.getItem("imageDataUrls")) || [];
+    const storedImageDataUrls =
+      JSON.parse(localStorage.getItem("imageDataUrls")) || [];
     const storedTagInputs = JSON.parse(localStorage.getItem("tagInputs")) || [];
 
     setImageDataUrls(storedImageDataUrls);
@@ -77,10 +79,19 @@ const DropImages = () => {
         const initialTagInputs = Array(dataUrls.length).fill("");
         setTagInputs([...tagInputs, ...initialTagInputs]);
 
-        localStorage.setItem("imageDataUrls", JSON.stringify([...imageDataUrls, ...dataUrls]));
-        localStorage.setItem("tagInputs", JSON.stringify([...tagInputs, ...initialTagInputs]));
+        localStorage.setItem(
+          "imageDataUrls",
+          JSON.stringify([...imageDataUrls, ...dataUrls])
+        );
+        localStorage.setItem(
+          "tagInputs",
+          JSON.stringify([...tagInputs, ...initialTagInputs])
+        );
       });
-    }, [imageDataUrls, tagInputs]);
+      setImagesDropped(true);
+    },
+    [imageDataUrls, tagInputs]
+  );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
@@ -96,7 +107,10 @@ const DropImages = () => {
     e.preventDefault();
     if (draggedImageIndex !== null && draggedImageIndex !== index) {
       const newImageDataUrls = [...imageDataUrls];
-      const [draggedImageDataUrl] = newImageDataUrls.splice(draggedImageIndex, 1);
+      const [draggedImageDataUrl] = newImageDataUrls.splice(
+        draggedImageIndex,
+        1
+      );
       newImageDataUrls.splice(index, 0, draggedImageDataUrl);
 
       const newTagInputs = [...tagInputs];
@@ -117,7 +131,7 @@ const DropImages = () => {
     const createTagCopies = [...tagInputs];
     createTagCopies[index] = event.target.value;
     setTagInputs(createTagCopies);
-    localStorage.setItem("tagInputs", JSON.stringify(createTagCopies))
+    localStorage.setItem("tagInputs", JSON.stringify(createTagCopies));
   };
 
   const handleSearch = (e) => {
@@ -125,14 +139,14 @@ const DropImages = () => {
   };
 
   const filteredImages = () => {
-    return imageDataUrls.map((dataUrl, index) => ({
-      dataUrl,
-      tagInput: tagInputs[index] || "",
-    })).filter((image) => {
-      return (
-        image.tagInput.toLowerCase().includes(searchState.toLowerCase())
-      );
-    });
+    return imageDataUrls
+      .map((dataUrl, index) => ({
+        dataUrl,
+        tagInput: tagInputs[index] || "",
+      }))
+      .filter((image) => {
+        return image.tagInput.toLowerCase().includes(searchState.toLowerCase());
+      });
   };
 
   const filteredImagesList = filteredImages();
@@ -159,13 +173,15 @@ const DropImages = () => {
         type="file"
         onChange={handleFileInputChange}
       /> */}
-      <input
-        onChange={handleSearch}
-        type="text"
-        placeholder="Search drag and drop images"
-        value={searchState}
-        className="input"
-      />
+      {imagesDropped && (
+        <input
+          onChange={handleSearch}
+          type="text"
+          placeholder="Search images"
+          value={searchState}
+          className="input"
+        />
+      )}
       <div {...getRootProps()} className="dropzone">
         <input {...getInputProps()} />
         {loading ? (
@@ -200,9 +216,11 @@ const DropImages = () => {
                       onChange={(event) => handleTagChange(index, event)}
                       className="tag-input"
                     />
-                    <FaTrash  onClick={handleDelete} className="trash"/>
+                    <FaTrash onClick={handleDelete} className="trash" />
                   </p>
-                ) : (<p>{image.tagInput}</p>)}
+                ) : (
+                  <p>{image.tagInput}</p>
+                )}
               </div>
             ))}
           </div>
