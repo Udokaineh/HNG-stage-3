@@ -80,7 +80,7 @@ const Signup = () => {
                         </div>
                         <div className="btn-div">
                             <button onClick={handleSignIn} className="details-btn">Create Account</button>
-                            <p>Already have an account? <Link to="/Login">Login</Link></p>
+                            <p>Already have an account? <Link to="/">Login</Link></p>
                         </div>
                     </div>
                 </div>
