@@ -8,8 +8,8 @@ A user should be able to Login to the gallery page. Authenticated users should b
 #### Requirements:
 * Simple Authentication: 
 This means login with this email and password:
-UserName: user@example.com
-Password: 1Password
+- -UserName: user@example.com
+- -Password: 1Password
 The authentication form fields should have proper validation setup, with proper error messages. You do not need to implement this on the backend yourself, you could use solutions like NextAuth, Auth0 or Clerk, firebase for Auth or add etc.
 
 * Image Display:
@@ -41,14 +41,14 @@ While adhering to the above requirements, you have the creative freedom to come 
 - Image Display: All Images should have consistent spacing and sizing.
 
 #### Installation
-Clone the repository: git clone https://github.com/Udokaineh/HNG-stage-3.git
-Navigate to the project directory: cd my-images
-Install the required dependencies: npm install
+<p> Clone the repository: git clone https://github.com/Udokaineh/HNG-stage-3.git </p>
+<p> Access the app in your web browser at http://172.20.10.3:3000 </p>
+<p>Install the required dependencies: npm install </p>
 
 #### Usage
-Start the server: npm start
-Access the app in your web browser at  http://172.20.10.3:3000
-Fill in the necessary login details with the default email and password provided or signUp with your own email and password.
+<p>Start the server: npm start</p>
+<p>Access the app in your web browser at  http://172.20.10.3:3000</p>
+<p>Fill in the necessary login details with the default email and password provided or signUp with your own email and password.</p>
 
 #### Submission Mode
 * Host your frontend application on a platform of your choice (e.g., GitHub Pages, Netlify).
