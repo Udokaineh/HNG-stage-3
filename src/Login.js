@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import DropImages from "./DropImages";
-import { Link } from "react-router-dom"
+import { Navigate, Link } from "react-router-dom"
+import { CameraIcon } from "./Icons";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -24,32 +24,15 @@ const Login = () => {
         }
     };
 
-    const handleLogout = () => {
-        setIsLoggedIn(false);
-        setEmail("");
-        setPassword("");
-    };
-
     return (
         <div className="container">
             {isLoggedIn ? (
-                <div className="main-header-container">
-                    <div className="main-header">
-                        <div className="logo">
-                            <h1>Image Gallery</h1>
-                            <p>Drag and drop Images to get started.</p>
-                        </div>
-                        <div className="main-btn-div">
-                        <button onClick={handleLogout} className="main-header-btn">Logout</button>
-                        </div>
-                    </div>
-                    <div>
-                        <DropImages />
-                    </div>
-                </div>
+                <Navigate to="/home-page" />
             ) : (
                 <div className="wrapper">
-                    <div className="left-decor"></div>
+                    <div className="left-decor">
+                        <div className="login-logo"><CameraIcon /><p>Image Gallery</p></div>
+                    </div>
                     <div className="right">
                         <div className="header-text">
                             <h2>Welcome back!</h2>
@@ -60,17 +43,17 @@ const Login = () => {
                                 <p>Email</p>
                                 <input
                                     type="email"
-                                    placeholder="Enter your email address"
+                                    placeholder="user@example.com"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                 />
                             </div>
 
-                            <div class="password-div">
+                            <div className="password-div">
                                 <p>Password</p>
                                 <input
                                     type="password"
-                                    placeholder="Enter your password"
+                                    placeholder="1Password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                 />

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import DropImages from "./DropImages";
 import { Link } from "react-router-dom"
+import { CameraIcon } from "./Icons";
 
 const Signup = () => {
     const [email, setEmail] = useState("");
@@ -51,7 +52,9 @@ const Signup = () => {
                 </div>
             ) : (
                 <div className="wrapper">
-                    <div className="left-decor"></div>
+                     <div className="left-decor">
+                        <div className="login-logo"><CameraIcon /><p>Image Gallery</p></div>
+                    </div>
                     <div className="right">
                         <div className="header-text">
                             <h2>Hello, Get Started!</h2>
@@ -62,7 +65,7 @@ const Signup = () => {
                                 <p>Email</p>
                                 <input
                                     type="email"
-                                    placeholder="Enter your email address"
+                                    placeholder="user@example.com"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                 />
@@ -72,7 +75,7 @@ const Signup = () => {
                                 <p>Password</p>
                                 <input
                                     type="password"
-                                    placeholder="Enter your password"
+                                    placeholder="1Password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
