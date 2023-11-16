@@ -630,6 +630,9 @@ button {
   .image-wrapper {
     margin-top: 84px;
   }
-  
+  .btn-div p {
+    font-size: 12px;
+    margin-top: 10px;
+  }
 
 }
